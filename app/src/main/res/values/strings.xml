@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ImageScraping</string>
+    <string name="custom_text">toast message</string>
+    <string name="images">images</string>
+    <string name="search_title">Search</string>
+    <string name="search">Search</string>
+    <string name="dateTime">Date Time - </string>
+</resources>
