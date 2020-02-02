@@ -11,6 +11,19 @@ Clone the repo and install the dependencies.
 The application follows an MVVM architecture as given below
 
 <img width="449" alt="Screen Shot 2019-12-25 at 8 05 55 AM" src="https://user-images.githubusercontent.com/19331629/71425127-6ca3cc00-26ed-11ea-98b5-a344b54b7050.png">
+
+# Requirements
+- Searches for the top images of the week from the Imgur gallery and display it in a list.
+- The app needs to provide the user the ability to input text as part of the search query before displaying relevant results.
+  - Right now we have provided the user to input title to fetch results. More input features can be added in future.
+- Each cell needs to display the following for each search result:
+  - title
+  - date of post in local time (DD/MM/YYYY h:mm a)
+  - number of additional images in post (if there are multiple)
+  - image
+- Toggle feature to change the display results.
+  - If toggle is enabled, the app should only display results where the sum of “points”,“score” and “topic_id” adds up to an even number
+  - If the toggle is disabled, the app should display all results
       
 # Setup
 ### Manifest File
@@ -182,7 +195,7 @@ We declare the respective dependencies
     }
 
 # Screenshots
-<img width="350" alt="Screen Shot 2019-12-25 at 8 05 55 AM" src="https://user-images.githubusercontent.com/19331629/71426011-c90be900-26f7-11ea-985a-b9b1f5b37caa.png"> <img width="350" alt="Screen Shot 2019-12-25 at 8 05 55 AM" src="https://user-images.githubusercontent.com/19331629/71426028-feb0d200-26f7-11ea-981d-d7ba721be139.png">
+<img width="350" alt="Screen Shot 2019-12-25 at 8 05 55 AM" src="https://user-images.githubusercontent.com/19331629/73607664-1ccdf400-460d-11ea-9183-789862e3aa14.jpeg"> <img width="350" alt="Screen Shot 2019-12-25 at 8 05 55 AM" src="https://user-images.githubusercontent.com/19331629/73607665-1ccdf400-460d-11ea-9a9f-4e1281fff81b.jpeg"> <img width="350" alt="Screen Shot 2019-12-25 at 8 05 55 AM" src="https://user-images.githubusercontent.com/19331629/73607666-1ccdf400-460d-11ea-827d-016e9db9492c.jpeg">
 
 # Generating signed APK
 From Android Studio:
