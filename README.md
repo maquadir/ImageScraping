@@ -1,6 +1,6 @@
 # ImghurApp
 This is an Android Application written in Kotlin that searches for the top images of the week from the Imgur gallery and
-display it in a list.
+display it in a list.The results are sorted in reverse chronological order.
 
 # Installation
 Clone the repo and install the dependencies.
@@ -14,7 +14,7 @@ The application follows an MVVM architecture as given below
       
 # Setup
 ### Manifest File
-- Since the app is going to fetch from json url .We have to add the following internet permissions to the manifest file.
+- Since the app is going to fetch from Imghur API .We have to add the following internet permissions to the manifest file.
     
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,6 +22,8 @@ The application follows an MVVM architecture as given below
 - The app supports orientation change and adapts to both portrait and landscape modes by mentioning screen orientation as 'sensor' which detects screen change and adapts its layout.
 
          android:screenOrientation="sensor"
+         
+- Information related to Imghur API can be found here https://api.imgur.com/
     
 ### Material Styling
 - A progress bar is displayed during the Request Builder read operation.
@@ -29,7 +31,7 @@ The application follows an MVVM architecture as given below
 - Montserrat Font styling for texts
 
 ### Check Network Connection
-We check if phone is connected to internet. If not we display a toast message.
+We check if the phone is connected to internet. If not we display a toast message.
 
            private fun isNetworkConnected(): Boolean {
                   val cm =
@@ -40,9 +42,12 @@ We check if phone is connected to internet. If not we display a toast message.
 ### Invoke Imghur API Url with top images of the week using Request.Builder()
 We have declared an Http Client  which will call the request to invoke the Imghur API url using Request.Builder()
 
+
          val okHttpClient = OkHttpClient().newBuilder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
+
+- From the Imghur API website we use URL https://api.imgur.com/3/gallery//top/viral/week to fetch the top viral images of the week from the Imghur Gallery
 
         val request = Request.Builder()
             .url("https://api.imgur.com/3/gallery//top/viral/week")
@@ -73,6 +78,7 @@ An Item data class is used to map the API data to Kotlin.
                  var topic_id:String,
                  var dateTime:String
                 )
+                
 ### Data Binding
 The Data Binding Library is an Android Jetpack library that allows you to bind UI components in your XML layouts to data sources in your app using a declarative format rather than programmatically.All the UIView elements in the layout are binded to views through data binding.
                 
@@ -84,7 +90,7 @@ The Data Binding Library is an Android Jetpack library that allows you to bind U
 
 ### View Model
 We set up a view model factory which is responsible for creating view models.It contains the data required in the View and translates the data which is stored in Model which then can be present inside a View. ViewModel and View are connected through Databinding and the observable Livedata.
-We attach a listener as a callback from the viewmodel.
+
 
         factory =
             ItemViewModelFactory()
@@ -93,11 +99,14 @@ We attach a listener as a callback from the viewmodel.
         //setup databinding
         binding.viewModel = viewModel
 
+- We attach a listener as a callback from the viewmodel.
+
         //setup listener
         viewModel.itemListener = this
 
 ### View
-It is the UI part that represents the current state of information that is visible to the user.A Recycler View displays the data read from the API. We setup a recycler view adapter to take care of displaying the data on the view.
+It is the UI that represents the current state of information that is visible to the user.A Recycler View displays the data read from the API. We setup a recycler view adapter to take care of displaying the data on the view.
+
 - The View model observes any data change and updates the adapter.We get the result in onResponse method of okHttpClient call.
 
       //display progress loader
@@ -126,7 +135,7 @@ It is the UI part that represents the current state of information that is visib
             )
         holder.listViewItemBinding.indicator.setViewPager(holder.listViewItemBinding.viewpager)
         
-- We use Glide to display profile image using data binding
+- We use Glide to display profile image using data binding(Not used at the moment)
       
       @BindingAdapter("image")
       fun loadImage(view: ImageView, url: String) {
