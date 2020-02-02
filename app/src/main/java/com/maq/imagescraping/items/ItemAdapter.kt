@@ -51,7 +51,6 @@ class ItemAdapter(
 
     }
 
-
    inner class PropertyViewHolder(val listViewItemBinding: ListViewItemBinding) : RecyclerView.ViewHolder(listViewItemBinding.root)
 
 

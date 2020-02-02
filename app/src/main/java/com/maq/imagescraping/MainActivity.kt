@@ -3,7 +3,6 @@ package com.maq.imagescraping
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -23,12 +22,6 @@ import com.maq.propertyapp.properties.ItemViewModel
 import com.maq.propertyapp.properties.ItemViewModelFactory
 import com.noorlabs.calcularity.interfaces.ItemListener
 import kotlinx.android.synthetic.main.custom_toast.*
-import okhttp3.*
-import okhttp3.logging.HttpLoggingInterceptor
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
-import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -116,10 +109,9 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener, ItemListene
         var score = viewModel.scoreArray[index]
         var topicId = viewModel.topicIdArray[index]
         var dateTime = viewModel.dateTimeArray[index]
-        var imageArray:MutableList<String>  = mutableListOf()
+        var imageArray = viewModel.imageArray
         searchData.add(Item(title,imageArray,points,score,topicId,dateTime))
         viewModel.displayRecyclerView(searchData)
-
 
 
     }

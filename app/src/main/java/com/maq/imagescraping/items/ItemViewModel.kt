@@ -1,32 +1,14 @@
 package com.maq.propertyapp.properties
 
 import android.app.Activity
-import android.app.Dialog
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.Window
-import android.widget.ImageButton
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.maq.imagescraping.R
 import com.maq.imagescraping.items.Item
-import com.maq.propertyapp.util.Coroutines
 import com.noorlabs.calcularity.interfaces.ItemListener
 
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONArray
@@ -42,13 +24,15 @@ class ItemViewModel : ViewModel() {
     var j:Int = 0
     var imagesArr: JSONArray? = null
     var Data = ArrayList<Item>()
-    var imageArray:MutableList<String>  = mutableListOf()
+    var imageArray =  ArrayList<String>()
+    var finalImageArray =  ArrayList<String>()
     var itemListener: ItemListener? = null
     val titleArray = ArrayList<String>()
     val pointsArray = ArrayList<String>()
     val scoreArray = ArrayList<String>()
     val topicIdArray = ArrayList<String>()
     val dateTimeArray = ArrayList<String>()
+    val imageMap = mutableMapOf<String, String>()
 
     private val _items = MutableLiveData<String>()
     val items : LiveData<String>
@@ -107,7 +91,7 @@ class ItemViewModel : ViewModel() {
                     val data = JSONObject(response.body()!!.string())
                     val items = data.getJSONArray("data")
 
-                    while(i < items.length() ){
+                    while(i < items.length()){
                         val item = items.getJSONObject(i)
 
                         val title = item["title"]
@@ -130,22 +114,22 @@ class ItemViewModel : ViewModel() {
                             j=0
                             imageArray.clear()
                             while(j < imagesArr!!.length()){
-                                Log.i("Image",j.toString())
                                 val image = imagesArr!!.getJSONObject(j)
 
                                 val link = image["link"]
                                 imageArray.add(link.toString())
 
                                 j++
-                                Log.i("Image","Failed at - "+ j.toString())
                             }
+
 
                         }catch(e: JSONException) {
                             Log.i("Exception",e.toString())
                         }
 
-
-                        val FinalItem =  Item(title.toString(),imageArray, points.toString(),
+                        var finalImageArray = imageArray.toList()
+                        val FinalItem =  Item(title.toString(),
+                            finalImageArray , points.toString(),
                             score.toString(), topic_id.toString(), dateTime.toString()
                         )
 
@@ -167,11 +151,9 @@ class ItemViewModel : ViewModel() {
                 })
 
 
-
             }
         })
     }
-
 
     fun displayRecyclerView(data: ArrayList<Item>) {
        itemListener?.displayRecyclerView(data)
