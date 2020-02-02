@@ -42,39 +42,51 @@
                 app:pageColor="#fff"
                 app:snap="false" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp">
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@+id/layoutProfile"
+                    android:padding="15dp"
                     android:gravity="start"
                     android:orientation="vertical"
                     android:layout_alignParentLeft="true"
-                    android:layout_toLeftOf="@+id/layoutProfile">
+                    >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/titeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title"
+                        android:textSize="13sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:textSize="13sp"
                         android:textColor="@color/black"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/datetext"
+                        android:id="@+id/dateText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/dateTime"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textColor="@color/black"
                         android:textStyle="bold"/>
 
@@ -82,173 +94,17 @@
                         android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:layout_marginLeft="5dp"
+                        android:textSize="13sp"
+                        android:layout_marginStart="5dp"
                         android:textColor="@color/black"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:layout_marginLeft="5dp" />
                     </LinearLayout>
 
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/displayPrice"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="@{property.currency +` `+ property.displayPrice}"-->
-<!--                        android:textColor="#000000"-->
-<!--                        android:textSize="15sp"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/title"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="@{property.area}"-->
-<!--                        android:textColor="#000000"-->
-<!--                        android:textSize="18sp"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/address1"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="10dp"-->
-<!--                        android:text="@{property.location.address}"-->
-<!--                        android:textColor="#000000"-->
-<!--                        android:textSize="13sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/address2"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="@{property.location.address2}"-->
-<!--                        android:textColor="#000000"-->
-<!--                        android:textSize="13sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/address3"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="@{property.location.state +` `+ property.location.suburb}"-->
-<!--                        android:textColor="#000000"-->
-<!--                        android:textSize="13sp" />-->
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:orientation="horizontal">
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/bedCount"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="@{Integer.toString(property.bedrooms)}"-->
-<!--                            android:textColor="#000000" />-->
-
-<!--                        <ImageView-->
-<!--                            android:id="@+id/bedImg"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="5dp"-->
-<!--                            android:contentDescription="@string/bed_icon"-->
-<!--                            app:srcCompat="@drawable/bed_icon" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/bathCount"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="10dp"-->
-<!--                            android:text="@{Integer.toString(property.bathrooms)}"-->
-<!--                            android:textColor="#000000" />-->
-
-<!--                        <ImageView-->
-<!--                            android:id = "@+id/bathImg"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="5dp"-->
-<!--                            android:contentDescription="@string/bath_icon"-->
-<!--                            app:srcCompat="@drawable/bath_icon" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/carCount"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="10dp"-->
-<!--                            android:text="@{Integer.toString(property.carspaces)}"-->
-<!--                            android:textColor="#000000" />-->
-
-<!--                        <ImageView-->
-<!--                            android:id="@+id/carImg"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="5dp"-->
-<!--                            android:contentDescription="@string/car_icon"-->
-<!--                            app:srcCompat="@drawable/car_icon" />-->
-
-                    </LinearLayout>
-
-
-<!--                    <ImageView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="20dp"-->
-<!--                        android:layout_marginTop="15dp"-->
-<!--                        android:contentDescription="@string/logo"-->
-<!--                        app:image="@{property.agencyLogoUrl}"/>-->
-
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:id="@+id/layoutProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:padding="5dp"
-                    android:layout_alignParentRight="true">
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/profile_image"-->
-<!--                        android:layout_width="40dp"-->
-<!--                        android:layout_height="40dp"-->
-<!--                        android:contentDescription="@string/profile_icon"-->
-<!--                        android:scaleType="matrix"-->
-<!--                        app:image="@{property.owner.image.small.url}" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/profile_name"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="5dp"-->
-<!--                        android:text="@{property.owner.name +` `+property.owner.lastName}"-->
-<!--                        android:textColor="#000000"-->
-<!--                        android:textSize="15sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/profile_dob"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="@{property.owner.dob}"-->
-<!--                        android:textColor="#000000"-->
-<!--                        android:textSize="13sp" />-->
-
-<!--                    <Button-->
-<!--                        android:id = "@+id/detailsButton"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="35dp"-->
-<!--                        android:layout_marginTop="20dp"-->
-<!--                        android:background="@drawable/layout_bg_black"-->
-<!--                        android:text="@string/details"-->
-<!--                        android:textColor="@color/white"-->
-<!--                        android:textSize="12sp"-->
-<!--                        />-->
 
 
                 </LinearLayout>
 
-            </RelativeLayout>
 
         </LinearLayout>
 

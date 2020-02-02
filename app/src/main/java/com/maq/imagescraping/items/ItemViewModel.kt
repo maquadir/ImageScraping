@@ -15,6 +15,8 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ItemViewModel : ViewModel() {
@@ -127,7 +129,7 @@ class ItemViewModel : ViewModel() {
                             Log.i("Exception",e.toString())
                         }
 
-                        var finalImageArray = imageArray.toList()
+                        val finalImageArray = imageArray.toList()
                         val FinalItem =  Item(title.toString(),
                             finalImageArray , points.toString(),
                             score.toString(), topic_id.toString(), dateTime.toString()
@@ -147,6 +149,7 @@ class ItemViewModel : ViewModel() {
                 }
 
                 activity.runOnUiThread(java.lang.Runnable {
+                    Collections.reverse(Data)
                     displayRecyclerView(Data)
                 })
 

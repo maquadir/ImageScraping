@@ -4,16 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.View
-import android.widget.*
+import android.widget.SearchView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.maq.imagescraping.databinding.ActivityMainBinding
 import com.maq.imagescraping.items.Item
 import com.maq.propertyapp.network.RecyclerViewClickListener
@@ -74,7 +74,6 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener, ItemListene
                     in viewModel.titleArray -> searchTitle(newText)
                 }
 
-
                 return false
             }
 
@@ -104,12 +103,12 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener, ItemListene
     private fun searchTitle(title: String) {
 
 
-        var index = viewModel.titleArray.indexOf(title)
-        var points = viewModel.pointsArray[index]
-        var score = viewModel.scoreArray[index]
-        var topicId = viewModel.topicIdArray[index]
-        var dateTime = viewModel.dateTimeArray[index]
-        var imageArray = viewModel.imageArray
+        val index = viewModel.titleArray.indexOf(title)
+        val points = viewModel.pointsArray[index]
+        val score = viewModel.scoreArray[index]
+        val topicId = viewModel.topicIdArray[index]
+        val dateTime = viewModel.dateTimeArray[index]
+        val imageArray = viewModel.imageArray
         searchData.add(Item(title,imageArray,points,score,topicId,dateTime))
         viewModel.displayRecyclerView(searchData)
 
@@ -117,11 +116,11 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener, ItemListene
     }
 
     private fun toggleFunction() {
-        val toggle: ToggleButton = findViewById(R.id.toggleButton)
         Data = viewModel.Data
-        toggle.setOnCheckedChangeListener { _, isChecked ->
+        binding.toggleButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                // The toggle is enabled
+                // If toggle is enabled, the app should only display results where the sum of “points”,
+                //“score” and “topic_id” adds up to an even number
                 var i = 0
                 ToggleData.clear()
                 while(i < Data.size){
@@ -137,12 +136,12 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener, ItemListene
                 }
 
                 Collections.reverse(ToggleData)
-                var result = ToggleData.size.toString() + " entries displayed"
+                val result = ToggleData.size.toString() + " entries displayed"
                 viewModel.displayToast(result)
                 viewModel.displayRecyclerView(ToggleData)
             } else {
-                // The toggle is disabled
-                var result = "All entries displayed"
+                // If the toggle is disabled, the app should display all results
+                val result = "All entries displayed"
                 viewModel.displayToast(result)
                 viewModel.displayRecyclerView(Data)
             }
@@ -151,7 +150,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener, ItemListene
 
     private fun setupUI() {
         //display progress loader
-        findViewById<ProgressBar>(R.id.loader).visibility = View.VISIBLE
+        binding.loader.visibility = View.VISIBLE
 
         //fetch data from Imghur API and display in view
         viewModel.fetchData(this)
@@ -200,13 +199,11 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener, ItemListene
     }
 
     override fun displayRecyclerView(data: ArrayList<Item>) {
-        Log.i("Image","RecyclerView called")
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        findViewById<ProgressBar>(R.id.loader).visibility = View.INVISIBLE
-        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
-        recyclerView.setHasFixedSize(true)
+        binding.loader.visibility = View.INVISIBLE
+        binding.recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+        binding.recyclerView.setHasFixedSize(true)
 
-        recyclerView.adapter = ItemAdapter(
+        binding.recyclerView.adapter = ItemAdapter(
             data,
             applicationContext,this@MainActivity
         )
